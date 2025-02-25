@@ -52,59 +52,31 @@
             margin-bottom: 20px;
         }
 
-        /* Heartbeat line animation styles */
-        .heartbeat-line svg {
-            width: 100%;
-            height: 20px;
-            margin-top: -15px;
+        /* Heart symbol styling */
+        .heart-symbol {
+            font-size: 30px;
+            color: #4CAF50;
+            margin: 0 10px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-top: -25px;
         }
 
-        .heartbeat-path {
-            fill: none;
-            stroke: #4CAF50;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            animation: heartbeatECG 1.2s linear infinite;
-        }
-
-         /* ECG-like wave animation keyframes */
-        @keyframes heartbeatECG {
+        /* Heartbeat animation */
+        @keyframes heartbeat {
             0% {
-                stroke-dasharray: 0, 500; /* Start with the line hidden */
+                transform: scale(1);
             }
-            5% {
-                stroke-dasharray: 20, 500;
-            }
-            10% {
-                stroke-dasharray: 40, 500;
-            }
-            20% {
-                stroke-dasharray: 80, 500;
-            }
-            30% {
-                stroke-dasharray: 120, 500;
-            }
-            40% {
-                stroke-dasharray: 160, 500;
+            25% {
+                transform: scale(1.2);
             }
             50% {
-                stroke-dasharray: 200, 500;
+                transform: scale(1);
             }
-            60% {
-                stroke-dasharray: 240, 500;
-            }
-            70% {
-                stroke-dasharray: 280, 500;
-            }
-            80% {
-                stroke-dasharray: 320, 500;
-            }
-            90% {
-                stroke-dasharray: 360, 500;
+            75% {
+                transform: scale(1.2);
             }
             100% {
-                stroke-dasharray: 400, 500; /* End with the full line visible */
+                transform: scale(1);
             }
         }
 
@@ -250,22 +222,14 @@
     <div class="container">
         
         <div class="title-container">
-            <!-- Heartbeat line before the title -->
-            <div class="heartbeat-line" style="left: 0;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20">
-                    <path class="heartbeat-path" d="M0,10 L10,10 L15,2 L20,8 L30,8 L35,2 L40,12 L50,12 L55,6 L60,10 L70,10 L75,4 L80,10 L90,10 L95,6 L100,10"/>
-                </svg>
-            </div>
+            <!-- Heart symbol before the title -->
+            <div class="heart-symbol">❤️</div>
 
             <!-- Title -->
             <h2>Heart Attack Risk Predictor</h2>
 
-            <!-- Heartbeat line after the title -->
-            <div class="heartbeat-line" style="right: 0;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20">
-                    <path class="heartbeat-path" d="M0,10 L10,10 L15,2 L20,8 L30,8 L35,2 L40,12 L50,12 L55,6 L60,10 L70,10 L75,4 L80,10 L90,10 L95,6 L100,10"/>
-                </svg>
-            </div>
+            <!-- Heart symbol after the title -->
+            <div class="heart-symbol">❤️</div>
         </div>
         
 

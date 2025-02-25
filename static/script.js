@@ -98,21 +98,37 @@ document.getElementById('thal').addEventListener('change', validatePage3); // Th
 
 // Handle page navigation: Next and Back buttons
 nextButton1.addEventListener('click', () => {
+
+    // Ensure this doesn't trigger the form submission
+    event.preventDefault(); // Prevent any unintended form submission
+
     page1.classList.remove('active'); // Hide page 1
     page2.classList.add('active'); // Show page 2
 });
 
 nextButton2.addEventListener('click', () => {
+
+    // Ensure this doesn't trigger the form submission
+    event.preventDefault(); // Prevent any unintended form submission
+
     page2.classList.remove('active'); // Hide page 2
     page3.classList.add('active'); // Show page 3
 });
 
 backButton1.addEventListener('click', () => {
+
+    // Ensure this doesn't trigger the form submission
+    event.preventDefault(); // Prevent any unintended form submission
+
     page2.classList.remove('active'); // Hide page 2
     page1.classList.add('active'); // Show page 1
 });
 
 backButton2.addEventListener('click', () => {
+
+    // Ensure this doesn't trigger the form submission
+    event.preventDefault(); // Prevent any unintended form submission
+
     page3.classList.remove('active'); // Hide page 3
     page2.classList.add('active'); // Show page 3
 });
