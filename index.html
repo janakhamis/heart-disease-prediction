@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Attack Predictor</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Hide sections by default */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+        
+        .tooltip {
+        font-size: 18px;
+        color: #45a049;
+        cursor: pointer;
+        position: relative;
+        }
+
+        .tooltip .tooltip-text {
+        visibility: hidden;
+        position: absolute;
+        top: 20px;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        white-space: normal; /* Allow text to break into multiple lines */
+        z-index: 1;
+        width: max-content;
+        }
+
+        .tooltip:hover .tooltip-text {
+        visibility: visible;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Attack Risk Predictor</h2>
+
+        <form id="heart-attack-form" method="POST" action="/predict">
+            <!-- First Step: Age and gender -->
+            <div id="step-1" class="step active">
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" name="age" id="age" required placeholder="Enter your age">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+
+                <button type="button" id="next-1" disabled>Next</button>
+            </div>
+
+            <!-- Second Step: From "Chest Pain Type" to "Resting Electrocardiogram Results" -->
+            <div id="step-2" class="step">
+                <div class="form-group">
+                    <label for="cp">Chest Pain Type: 
+                        <span class="tooltip" data-tooltip="Type of Chest Pains">?</span>
+                    </label>
+                    <select name="cp" id="cp" required>
+                        <option value="1">Typical Angina</option>
+                        <option value="2">Atypical Angina</option>
+                        <option value="3">Non-Anginal Pain</option>
+                        <option value="4">Asymptomatic</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="trestbps">Resting Blood Pressure:
+                        <span class="tooltip" 
+                        data-tooltip="Normal: &lt; 120 mm Hg<br>Elevated: 120-129 mm Hg<br>High: &gt; 130 mm Hg">
+                        >?</span>
+                    </label>
+                    <input type="number" name="trestbps" id="trestbps" required placeholder="Enter resting blood pressure">
+                </div>
+
+                <div class="form-group">
+                    <label for="chol">Cholesterol Level:</label>
+                    <input type="number" name="chol" id="chol" required placeholder="Enter cholesterol level">
+                </div>
+
+                <div class="form-group">
+                    <label for="fbs">Fasting Blood Sugar:</label>
+                    <select name="fbs" id="fbs" required>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="restecg">Resting Electrocardiogram Results:</label>
+                    <select name="restecg" id="restecg" required>
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T wave abnormality</option>
+                        <option value="2">Left ventricular hypertrophy</option>
+                    </select>
+                </div>
+
+                <button type="button" id="next-2" disabled>Next</button>
+            </div>
+
+            <!-- Third Step: Remaining Fields and Predict Button -->
+            <div id="step-3" class="step">
+                <div class="form-group">
+                    <label for="thalachh">Maximum Heart Rate Achieved:</label>
+                    <input type="number" name="thalachh" id="thalachh" required placeholder="Enter maximum heart rate">
+                </div>
+
+                <div class="form-group">
+                    <label for="exang">Exercise-Induced Angina:</label>
+                    <select name="exang" id="exang" required>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest:</label>
+                    <input type="number" name="oldpeak" id="oldpeak" required placeholder="Enter ST depression">
+                </div>
+
+                <div class="form-group">
+                    <label for="slope">Slope of the Peak Exercise ST Segment:</label>
+                    <select name="slope" id="slope" required>
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ca">Number of Major Vessels Colored by Fluoroscopy:</label>
+                    <input type="number" name="ca" id="ca" required placeholder="Enter the number of vessels">
+                </div>
+
+                <div class="form-group">
+                    <label for="thal">Thalassemia:</label>
+                    <select name="thal" id="thal" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed defect</option>
+                        <option value="3">Reversible defect</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submit-button" disabled>Predict Heart Attack Risk</button>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="static/script.js"></script>
+
+    <script>
+        // Find all tooltips
+        document.querySelectorAll('.tooltip').forEach(function(tooltipElement) {
+            // Get the data-tooltip attribute value
+            const tooltipText = tooltipElement.getAttribute('data-tooltip');
+            
+            // Create a tooltip text element inside the span
+            const tooltipTextElement = document.createElement('span');
+            tooltipTextElement.classList.add('tooltip-text');
+            
+            // Allow HTML to render
+            tooltipTextElement.innerHTML = tooltipText;
+    
+            // Append the tooltip text element to the tooltip span
+            tooltipElement.appendChild(tooltipTextElement);
+        });
+    </script>
+    
+</body>
+</html>
+
