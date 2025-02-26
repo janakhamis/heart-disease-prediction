@@ -49,19 +49,74 @@ Generated the following graphs:
   * A scatter plot to visualize the relationship between age and cholesterol level of participants.
   * A pie chart that shows the ratio of female and male participants in the dataset.
   * A pie chart showing a majority of participants in the dataset have Fasting blood sugar above 120 mg/dl.
-  * A bar chart that plots number of participants against the likelihood of having a heart attack.
+  * A bar chart that plots the number of participants against the likelihood of having a heart attack.
 
 ## Data Analysis and Visualizations:
 Answered the following questions:
 1. Which features are the most indicative of an individual having heart disease?
-![feature vs risk](graphs/feature_correlation_with_risk.png)
+![Features vs Risk](graphs/feature_correlation_with_risk.png)
 2. What is the distribution of heart disease across different age groups?
-![age distribution](graphs/Age Distribution of Individuals with more or less Heart Disease Risk.png)
-3. 
-4. 
-5. Plotted the number of complaints per month as a line graph with the average and upper control limit (UCL) and saved it as a PNG.
+![Age Distribution](graphs/Age%20Distribution%20of%20Individuals%20with%20more%20or%20less%20Heart%20Disease%20Risk.png)
+3. How does oldpeak (ST depression) affect the possibility of a heart attack?
+![ST depression vs possibility of heart attack](graphs/Effect%20of%20Oldpeak%20on%20Heart%20Disease%20Ris.png)
+4. Are there threshold values for features like resting heart pressure or cholesterol levels that indicate a higher chance of having heart disease?
+![Resting Blood Pressure Distribution](graphs/Resting%20Blood%20Pressure%20Distribution%20for%20Heart%20Disease%20Risk.png)
+![Cholesterol Levels Distribution](graphs/Cholesterol%20Levels%20Distribution%20for%20Heart%20Disease%20Risk.png)
 
-## Building the Complaints Dashboard:
+## Machine Learning Models:
+1. Neural Network Model
+   * Used `risk` as the target variable and everything else as feature variables.
+   * Split the preprocessed data into training and testing, then scaled the data.
+   * Defined the deep neural network, specifying the following:
+      * Three hidden layers with 120, 60, and 30 neurons, respectively.
+      * Used the `ReLU` activation function for all the hidden layers and `sigmoid` for the output layer.
+   * Compiled and trained the model.
+      * Achieved an accuracy of 100%.
+   * Exported and saved our model as a HDF5 file and our scaler as a PKL file.
+   * Evaluated our model using test data.
+      * Achieved an accuracy of 96.82%.
+2. Random Forest Model
+   * Created a Random Forest Classifier, fitted the model, and made predictions using testing data.
+   * Calculated the confusion matrix, accuracy score, and feature importance.
+3. Decision Tree Model
+   * Created a Decision Tree Classifier, fitted the model, and made predictions using testing data.
+   * Calculated the confusion matrix and accuracy score.
+
+## **Models Tested & Performance Comparison**
+To ensure the best predictive performance, we tested and evaluated **three different machine learning models**:
+
+| Model | Accuracy |
+|--------|----------|
+| **Neural Network (Deep Learning - Keras/TensorFlow)** | **1.00 (100%)** |
+| **Random Forest Classifier** | **0.97 (97%)** |
+| **Decision Tree Classifier** | **0.96 (96%)** |
+
+### Why We Chose the Neural Network Model
+- The **Neural Network** achieved the highest accuracy (**100%**) compared to the other models.
+- It demonstrated superior learning capability and **generalization**, reducing misclassification errors.
+- The model effectively captured **complex relationships** within the dataset, improving predictive power.
+
+## **Dataset & Features**
+The dataset used in this project contains various health-related parameters that may contribute to **heart disease risk**. Below are the key features:
+
+| Feature | Description |
+|---------|------------|
+| **Age** | Age of the individual |
+| **Gender** | Male (1) or Female (0) |
+| **Chest Pain Type (cp)** | Types: Typical Angina, Atypical Angina, Non-Anginal Pain, Asymptomatic |
+| **Resting Blood Pressure (trestbps)** | Blood pressure measured in mmHg |
+| **Cholesterol (chol)** | Serum cholesterol level (mg/dL) |
+| **Fasting Blood Sugar (fbs)** | 1 if fasting blood sugar > 120 mg/dL, otherwise 0 |
+| **Resting ECG (restecg)** | Electrocardiographic results |
+| **Max Heart Rate Achieved (thalach)** | Maximum recorded heart rate |
+| **Exercise-Induced Angina (exang)** | 1 = Yes, 0 = No |
+| **Oldpeak (ST Depression) (oldpeak)** | ST segment depression in ECG |
+| **Slope of Peak Exercise ST Segment (slope)** | Indicates heart stress test results |
+| **Number of Major Vessels Colored by Fluoroscopy (ca)** | Ranges from 0 to 3 |
+| **Thalassemia (thal)** | 3 = Normal, 6 = Fixed Defect, 7 = Reversible Defect |
+| **Target (risk)** | 1 = High chance of heart disease, 0 = Low chance |
+
+## Building the Web App:
 **HTML**:
 1. Built the structure and the layout of the dashboard.
 2. Imported the necessary libraries, such as Leaflet.js, Plotly.js, Bootstrap, and Google Fonts.
