@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Attack Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic Reset: Remove margin, padding, and set box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container to hold the form content */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Flexbox container to align title and heartbeat line */
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* Title Styling */
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Heart symbol styling */
+        .heart-symbol {
+            font-size: 30px;
+            color: #4CAF50;
+            margin: 0 10px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-top: -25px;
+        }
+
+        /* Heartbeat animation */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Label Styling */
+        label {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Input and Select Field Styling */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Remove default appearance for select dropdown */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        /* Button Container Styling */
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Space between buttons */
+            align-items: center; /* Align buttons vertically */
+        }
+
+        /* Next Button Styling */
+        .next-button{
+            width: 40%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: auto;  /* This will move the button to the right */
+            margin-right: 0;    /* Optional: to ensure there's no extra space on the right */
+        }
+
+        /* Back Button Styling */
+        .back-button{
+            width: 40%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 0;  /* This will move the button to the right */
+            margin-right: auto;    /* Optional: to ensure there's no extra space on the right */
+        }
+
+        /* Submit Button Styling */
+        .submit {
+            width: 50%;
+            right: 100px; 
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: auto;  /* This will move the button to the right */
+            margin-right: 0;    /* Optional: to ensure there's no extra space on the right */
+        }
+        
+        /* Hover effect for buttons */
+        .next-button:hover, .back-button:hover, .submit:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+         /* Disabled button style */
+        .next-button:disabled, .submit:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        /* Form Group for spacing between fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Hide sections by default */
+        .page {
+            display: none;
+        }
+
+        /* Active class to display the current form page */
+        .page.active {
+            display: block;
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+        font-size: 13px;
+        color: #45a049;
+        cursor: pointer;
+        position: relative; /* Ensures the tooltip text is positioned relative to the icon */
+        }
+
+        .tooltip .tooltip-text {
+        visibility: hidden; /* Hidden by default */
+        position: absolute; /* Positioning the tooltip */
+        top: -25px;
+        left: 100%;
+        background-color: #e5e5e5;
+        color: #333;
+        padding: 5px;
+        border-radius: 5px;
+        white-space: normal; /* Allow text to break into multiple lines */
+        z-index: 1;
+        width: max-content; /* Ensure the tooltip can grow with content */
+        max-width: 300px;
+        }
+
+        /* Show tooltip text when hovered */
+        .tooltip:hover .tooltip-text {
+        visibility: visible; /* Show when hovered */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Main container for the form -->
+    <div class="container">
+        
+        <div class="title-container">
+            <!-- Heart symbol before the title -->
+            <div class="heart-symbol">❤️</div>
+
+            <!-- Title -->
+            <h2>Heart Attack Risk Predictor</h2>
+
+            <!-- Heart symbol after the title -->
+            <div class="heart-symbol">❤️</div>
+        </div>
+        
+
+        <!-- Form for heart attack risk prediction -->
+        <form id="heart-attack-form" method="POST" action="/predict">
+            <!-- First Page: Age and gender input-->
+            <div id="page-1" class="page active">
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" name="age" id="age" required placeholder="Enter your age">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+
+                <!-- Next button to go to the next page -->
+                <div class="button-container">
+                    <button class="next-button" id="next-1" disabled>Next</button>
+                </div>
+                
+            </div>
+
+            <!-- Second Page: From "Chest Pain Type" to "Resting Electrocardiogram Results" -->
+            <div id="page-2" class="page">
+                <div class="form-group">
+                    <label for="cp">Chest Pain Type: 
+                        <span class="tooltip" data-tooltip="1. Typical angina: Chest pain associated with heart-related issues.
+                        <br>2. Atypical angina: Chest pain that doesn't follow the usual pattern of angina.
+                        <br>3. Non-anginal pain: Chest pain not related to heart problems.
+                        <br>4. Asymptomatic: No chest pain present.">?</span>
+                    </label>
+                    <select name="cp" id="cp" required>
+                        <option value="1">Typical Angina</option>
+                        <option value="2">Atypical Angina</option>
+                        <option value="3">Non-Anginal Pain</option>
+                        <option value="4">Asymptomatic</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="trestbps">Resting Blood Pressure:
+                        <span class="tooltip" 
+                       data-tooltip="Normal: &lt; 120 mm Hg<br>Elevated: 120-129 mm Hg<br>High: &gt; 130 mm Hg"
+                        >?</span>
+                    </label>
+                    <input type="number" name="trestbps" id="trestbps" required placeholder="Enter resting blood pressure">
+                </div>
+
+                <div class="form-group">
+                    <label for="chol">Cholesterol Level:
+                        <span class="tooltip" data-tooltip="Serum cholesterol level refers to the amount of cholesterol present in the blood 
+                        <br>1. Normal: &lt; 200 mg/dL<br>2. Borderline high: 200-239 mg/dL<br>3.High: &gt; 239 mg/dL">?</span>
+                    </label>
+                    <input type="number" name="chol" id="chol" required placeholder="Enter cholesterol level">
+                </div>
+
+                <div class="form-group">
+                    <label for="fbs">Fasting Blood Sugar:
+                        <span class="tooltip" data-tooltip="The level of glucose (sugar) in the blood after a person has not eaten for at least 8 to 12 hours">?</span>
+                    </label>
+                    <select name="fbs" id="fbs" required>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="restecg">Resting Electrocardiogram Results:
+                        <span class="tooltip" 
+                            data-tooltip="1. Normal (No abnormality)<br>2. ST-T Wave Abnormality (Possible heart issue)<br>
+                            3. Left Ventricular Hypertrophy (Enlarged left ventricle, often due to high blood pressure)">
+                        ?
+                        </span>
+                    </label>
+                    <select name="restecg" id="restecg" required>
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T wave abnormality</option>
+                        <option value="2">Left ventricular hypertrophy</option>
+                    </select>
+                </div>
+
+                <!-- Back and next button to go to the previous or next page -->
+                <div class="button-container">
+                    <button class="back-button" id="back-1" disabled>Back</button>
+                    <button class="next-button" id="next-2" disabled>Next</button>
+                </div>
+                
+            </div>
+
+            <!-- Third Page: Remaining Fields and Predict Button -->
+            <div id="page-3" class="page">
+                <div class="form-group">
+                    <label for="thalachh">Maximum Heart Rate Achieved:
+                        <span class="tooltip" data-tooltip="Take 220 and subtract your age<br> Ex: 220 - 34 = 186">?</span>
+                    </label>
+                    <input type="number" name="thalachh" id="thalachh" required placeholder="Enter maximum heart rate">
+                </div>
+
+                <div class="form-group">
+                    <label for="exang">Exercise-Induced Angina:
+                        <span class="tooltip" data-tooltip="Chest pain or discomfort triggered by physical activity due to reduced blood flow to the heart">?</span>
+                    </label>
+                    <select name="exang" id="exang" required>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest:
+                        <span class="tooltip" data-tooltip="ST depression is a change in the heart's electrical activity shown by an ECG<br>Range: 0 - 6">?</span>
+                    </label>
+                    <input type="number" name="oldpeak" id="oldpeak" required placeholder="Enter ST depression">
+                </div>
+
+                <div class="form-group">
+                    <label for="slope">Slope of the Peak Exercise ST Segment:
+                        <span class="tooltip" data-tooltip="The slope of the peak exercise ST segment indicates the shape of the ST segment during exercise
+                        <br>1. Upsloping: Normal<br>2. Flat: Possible heart concern<br>3. Downsloping: Ischemia: ">?</span>
+                    </label>
+                    <select name="slope" id="slope" required>
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ca">Number of Major Vessels Colored by Fluoroscopy:
+                        <span class="tooltip" data-tooltip="The number of major vessels (0-3) colored by fluoroscopy refers to the count of coronary arteries visible and assessed during a fluoroscopy procedure.<br>
+                        0 = No vessels visible<br>
+                        1 = One vessel visible<br>
+                        2 = Two vessels visible<br>
+                        3 = Three vessels visible">?</span>
+                    </label>
+                    <input type="number" name="ca" id="ca" required placeholder="Enter the number of vessels">
+                </div>
+
+                <div class="form-group">
+                    <label for="thal">Thalassemia:
+                        <span class="tooltip" data-tooltip="An inherited blood disorder where the body makes less hemoglobin than normal <br>
+                            1. Normal: No defect present <br>
+                            2. Fixed defect: A permanent abnormality<br>
+                            3. Reversible defect: A temporary abnormality that can improve">?</span>
+                    </label>
+                    <select name="thal" id="thal" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed defect</option>
+                        <option value="3">Reversible defect</option>
+                    </select>
+                </div>
+
+                <!-- Back and submit button to go to the previous page or submit for results -->
+                <div class="button-container">
+                    <button class="back-button" id="back-2" disabled>Back</button>
+                    <button class="submit" id="submit-button" disabled>Predict Heart Attack Risk</button>
+                </div>
+                
+            </div>
+        </form>
+
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="static/script.js"></script>
+</body>
+</html>
+

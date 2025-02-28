@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Flexbox container to align title and heartbeat line */
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        /* Heart symbol styling */
+        .heart-symbol {
+            font-size: 30px;
+            color: #4CAF50;
+            margin: 0 10px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-top: -25px;
+        }
+
+        /* Heartbeat animation */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .result {
+            font-size: 18px;
+            color: #555;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 20px; /* Add some margin below the result */
+        }
+
+        .button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            text-decoration: none; /* Remove underline from link */
+            margin-top: 20px; /* Space between result and button */
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title-container">
+            <!-- Heart symbol before the title -->
+            <div class="heart-symbol">❤️</div>
+
+            <h1>Heart Attack Risk Predictor</h1>
+
+           <!-- Heart symbol after the title -->
+           <div class="heart-symbol">❤️</div>
+        </div>
+        <div class="result">
+            <p>Result: <strong>{{ result }}</strong></p>
+        </div>
+        <a href="/" class="button">Go Back to Home</a>
+    </div>
+
+</body>
+
+</html>
