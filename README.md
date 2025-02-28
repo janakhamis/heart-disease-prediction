@@ -39,17 +39,17 @@ Heart disease is one of the leading causes of death worldwide, and early detecti
 The web app leverages a deep learning model (Neural Network) trained on a heart disease dataset, taking user inputs such as age, cholesterol, chest pain type, fasting blood sugar, and more to estimate the probability of heart disease.
 
 ##  Objectives
-- Develop a **Flask web application** that allows users to input health parameters.
-- Use a **trained deep learning model** to predict heart disease risk.
-- Display **personalized risk percentage and a visualization**.
-- Provide **user-friendly explanations** with tooltips for each input field.
+* Develop a **Flask web application** that allows users to input health parameters.
+* Use a **trained deep learning model** to predict heart disease risk.
+* Display **personalized risk percentage and a visualization**.
+* Provide **user-friendly explanations** with tooltips for each input field.
 
-## Cleaning the Data:
-1. Renamed columns: `target` to `risk` and `sex` to `gender`.
-2. Check to ensure no missing values.
-3. Converted the cleaned DataFrame into a CSV and downloaded it.
+## Cleaning the Data
+* Renamed columns: `target` to `risk` and `sex` to `gender`.
+* Check to ensure no missing values.
+* Converted the cleaned DataFrame into a CSV and downloaded it.
 
-## Data Exploration:
+## Data Exploration
 Generated the following graphs:
   * A bar chart showing the distribution of ages among participants.
   * A scatter plot to visualize the relationship between age and cholesterol level of participants.
@@ -57,7 +57,7 @@ Generated the following graphs:
   * A pie chart showing a majority of participants in the dataset have Fasting blood sugar above 120 mg/dl.
   * A bar chart that plots the number of participants against the likelihood of having a heart attack.
 
-## Data Analysis and Visualizations:
+## Data Analysis and Visualizations
 Answered the following questions:
 1. Which features are the most indicative of an individual having heart disease?
 ![Features vs Risk](graphs/feature_correlation_with_risk.png)
@@ -69,7 +69,7 @@ Answered the following questions:
 ![Resting Blood Pressure Distribution](graphs/Resting%20Blood%20Pressure%20Distribution%20for%20Heart%20Disease%20Risk.png)
 ![Cholesterol Levels Distribution](graphs/Cholesterol%20Levels%20Distribution%20for%20Heart%20Disease%20Risk.png)
 
-## Machine Learning Models:
+## Machine Learning Models
 1. Neural Network Model
    * Used `risk` as the target variable and everything else as feature variables.
    * Split the preprocessed data into training and testing, then scaled the data.
@@ -91,7 +91,7 @@ Answered the following questions:
    * Created a KNeighbors Classifier, fitted the model, and made predictions using testing data.
    * Generated the confusion matrix and classification report.
 
-## **Models Tested & Performance Comparison**
+## Models Tested and Performance Comparison
 To ensure the best predictive performance, we tested and evaluated **four different machine learning models**:
 
 | Model | Accuracy |
@@ -106,7 +106,7 @@ To ensure the best predictive performance, we tested and evaluated **four differ
 - It demonstrated superior learning capability and **generalization**, reducing misclassification errors.
 - The model effectively captured **complex relationships** within the dataset, improving predictive power.
 
-## Dataset & Features
+## Dataset and Features
 The dataset used in this project contains various health-related parameters that may contribute to **heart disease risk**. Below are the key features:
 
 | Feature | Description |
@@ -126,14 +126,14 @@ The dataset used in this project contains various health-related parameters that
 | **Thalassemia (thal)** | 1 = Normal, 2 = Fixed Defect, 3 = Reversible Defect |
 | **Target (risk)** | 1 = High risk of heart disease, 0 = Low risk |
 
-## Building the Web App:
+## Building the Web App
 **HTML**:
-1. Built the structure and the layout of the webpage.
+1. Built the structure and layout of the webpage.
 2. Imported the Google Fonts library.
 3. Created the style of the buttons, the tooltip, and the form where users input the relevant features.
 
 **Results HTML**:
-1. Built the structure and the layout of the webpage.
+1. Built the structure and layout of the webpage.
 2. Imported the necessary library Google Fonts.
 3. Created the style of the button and provided the results from the inputs.
 
@@ -150,20 +150,20 @@ The dataset used in this project contains various health-related parameters that
    * `/`: Homepage
    * `/predict`: Form submission and prediction results
 
-## Datasets:
-- heart_disease_dataset.csv
+## Datasets
+- [heart_disease_dataset.csv](./heart_disease_dataset.csv)
 
-## Outputs:
-- cleaned_heart_disease.csv
-- graphs/
-- heart_disease_model.h5
-- scaler.pkl
+## Outputs
+- [cleaned_heart_disease.csv](./cleaned_heart_disease.csv)
+- [graphs/](./graphs/)
+- [heart_disease_model.h5](./models/heart_disease_model.h5)
+- [scaler.pkl](./models/scaler.pkl)
 
-## Group Members:
+## Group Members
 - Jana Khamis
 - Paul Schaefer
 - King Yuet Lau (Janette)
 - Bhavesh Heetoo
 
-## References:
+## References
 Nazirkhan, Farhaan. “Heart Disease Prediction Dataset.” Kaggle, 27 Sept. 2024, www.kaggle.com/datasets/mfarhaannazirkhan/heart-dataset.
