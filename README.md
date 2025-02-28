@@ -99,7 +99,7 @@ To ensure the best predictive performance, we tested and evaluated **four differ
 | **Neural Network (Deep Learning - Keras/TensorFlow)** | **1.00 (100%)** |
 | **Random Forest Classifier** | **0.97 (97%)** |
 | **Decision Tree Classifier** | **0.96 (96%)** |
-| **KNearestNeighbors** | **0.95 (95%)** |
+| **K-Nearest Neighbors** | **0.95 (95%)** |
 
 ### Why We Chose the Neural Network Model
 - The **Neural Network Model** achieved the highest accuracy (**100%**) compared to the other models.
