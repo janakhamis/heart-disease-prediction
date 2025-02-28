@@ -50,3 +50,39 @@ python app.py
 ```
 
 The app will be available at: http://127.0.0.1:5000/
+
+## **Models Tested & Performance Comparison**
+To ensure the best predictive performance, we tested and evaluated **three different machine learning models**:
+
+| Model | Accuracy |
+|--------|----------|
+| **Neural Network (Deep Learning - Keras/TensorFlow)** | **1.0000 (100%)** |
+| **Random Forest Classifier** | **0.97 (97%)** |
+| **Decision Tree Classifier** | **0.96 (96%)** |
+
+### **Why We Chose the Neural Network Model**
+- The **Neural Network** achieved the highest accuracy (**100%**) compared to the other models.
+- It demonstrated superior learning capability and **generalization**, reducing misclassification errors.
+- The model effectively captured **complex relationships** within the dataset, improving predictive power.
+
+## **Dataset & Features**
+The dataset used in this project contains various health-related parameters that may contribute to **heart disease risk**. Below are the key features:
+
+| Feature | Description |
+|---------|------------|
+| **Age** | Age of the individual |
+| **Gender** | Male (1) or Female (0) |
+| **Chest Pain Type (CP)** | Types: Typical Angina, Atypical Angina, Non-Anginal Pain, Asymptomatic |
+| **Resting Blood Pressure (trestbps)** | Blood pressure measured in mmHg |
+| **Cholesterol (chol)** | Serum cholesterol level (mg/dL) |
+| **Fasting Blood Sugar (fbs)** | 1 if fasting blood sugar > 120 mg/dL, otherwise 0 |
+| **Resting ECG (restecg)** | Electrocardiographic results |
+| **Max Heart Rate Achieved (thalach)** | Maximum recorded heart rate |
+| **Exercise-Induced Angina (exang)** | 1 = Yes, 0 = No |
+| **Oldpeak (ST Depression)** | ST segment depression in ECG |
+| **Slope of Peak Exercise ST Segment** | Indicates heart stress test results |
+| **Number of Major Vessels Colored by Fluoroscopy (ca)** | Ranges from 0 to 3 |
+| **Thalassemia (thal)** | 3 = Normal, 6 = Fixed Defect, 7 = Reversible Defect |
+| **Target (Risk)** | 1 = High chance of heart disease, 0 = Low chance |
+
+---
