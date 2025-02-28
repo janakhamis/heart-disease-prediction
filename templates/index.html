@@ -261,7 +261,10 @@
             <div id="page-2" class="page">
                 <div class="form-group">
                     <label for="cp">Chest Pain Type: 
-                        <span class="tooltip" data-tooltip="Type of Chest Pains">?</span>
+                        <span class="tooltip" data-tooltip="1. Typical angina: Chest pain associated with heart-related issues.
+                        <br>2. Atypical angina: Chest pain that doesn't follow the usual pattern of angina.
+                        <br>3. Non-anginal pain: Chest pain not related to heart problems.
+                        <br>4. Asymptomatic: No chest pain present.">?</span>
                     </label>
                     <select name="cp" id="cp" required>
                         <option value="1">Typical Angina</option>
@@ -282,7 +285,8 @@
 
                 <div class="form-group">
                     <label for="chol">Cholesterol Level:
-                        <span class="tooltip" data-tooltip="Normal: &lt; 200 mg/dL<br>Borderline high: 200-239 mg/dL<br>High: &gt; 239 mg/dL">?</span>
+                        <span class="tooltip" data-tooltip="Serum cholesterol level refers to the amount of cholesterol present in the blood 
+                        <br>1. Normal: &lt; 200 mg/dL<br>2. Borderline high: 200-239 mg/dL<br>3.High: &gt; 239 mg/dL">?</span>
                     </label>
                     <input type="number" name="chol" id="chol" required placeholder="Enter cholesterol level">
                 </div>
@@ -300,7 +304,8 @@
                 <div class="form-group">
                     <label for="restecg">Resting Electrocardiogram Results:
                         <span class="tooltip" 
-                            data-tooltip=" Normal (No abnormality)<br>ST-T Wave Abnormality (Possible heart issue)<br>Left Ventricular Hypertrophy (Enlarged left ventricle, often due to high blood pressure)">
+                            data-tooltip="1. Normal (No abnormality)<br>2. ST-T Wave Abnormality (Possible heart issue)<br>
+                            3. Left Ventricular Hypertrophy (Enlarged left ventricle, often due to high blood pressure)">
                         ?
                         </span>
                     </label>
@@ -323,7 +328,7 @@
             <div id="page-3" class="page">
                 <div class="form-group">
                     <label for="thalachh">Maximum Heart Rate Achieved:
-                        <span class="tooltip" data-tooltip="Take 220 and subtract your age<br> Ex: 220-34 = 186">?</span>
+                        <span class="tooltip" data-tooltip="Take 220 and subtract your age<br> Ex: 220 - 34 = 186">?</span>
                     </label>
                     <input type="number" name="thalachh" id="thalachh" required placeholder="Enter maximum heart rate">
                 </div>
@@ -347,7 +352,8 @@
 
                 <div class="form-group">
                     <label for="slope">Slope of the Peak Exercise ST Segment:
-                        <span class="tooltip" data-tooltip="Normal: Upsloping<br> Possible heart concern: Flat<br> Ischemia: Downsloping">?</span>
+                        <span class="tooltip" data-tooltip="The slope of the peak exercise ST segment indicates the shape of the ST segment during exercise
+                        <br>1. Upsloping: Normal<br>2. Flat: Possible heart concern<br>3. Downsloping: Ischemia: ">?</span>
                     </label>
                     <select name="slope" id="slope" required>
                         <option value="0">Upsloping</option>
@@ -358,14 +364,21 @@
 
                 <div class="form-group">
                     <label for="ca">Number of Major Vessels Colored by Fluoroscopy:
-                        <span class="tooltip" data-tooltip="Range: 0 - 3">?</span>
+                        <span class="tooltip" data-tooltip="The number of major vessels (0-3) colored by fluoroscopy refers to the count of coronary arteries visible and assessed during a fluoroscopy procedure.<br>
+                        0 = No vessels visible<br>
+                        1 = One vessel visible<br>
+                        2 = Two vessels visible<br>
+                        3 = Three vessels visible">?</span>
                     </label>
                     <input type="number" name="ca" id="ca" required placeholder="Enter the number of vessels">
                 </div>
 
                 <div class="form-group">
                     <label for="thal">Thalassemia:
-                        <span class="tooltip" data-tooltip="An inherited blood disorder where the body makes less hemoglobin than normal">?</span>
+                        <span class="tooltip" data-tooltip="An inherited blood disorder where the body makes less hemoglobin than normal <br>
+                            1. Normal: No defect present <br>
+                            2. Fixed defect: A permanent abnormality<br>
+                            3. Reversible defect: A temporary abnormality that can improve">?</span>
                     </label>
                     <select name="thal" id="thal" required>
                         <option value="1">Normal</option>
