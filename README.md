@@ -151,10 +151,10 @@ The dataset used in this project contains various health-related parameters that
    * `/predict`: Form submission and prediction results
 
 ## Datasets
-- [heart_disease_dataset.csv](./heart_disease_dataset.csv)
+- [heart_disease_dataset.csv](./data/heart_disease_dataset.csv)
 
 ## Outputs
-- [cleaned_heart_disease.csv](./cleaned_heart_disease.csv)
+- [cleaned_heart_disease.csv](./data/cleaned_heart_disease.csv)
 - [graphs/](./graphs/)
 - [heart_disease_model.h5](./models/heart_disease_model.h5)
 - [scaler.pkl](./models/scaler.pkl)
