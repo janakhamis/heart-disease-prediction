@@ -1,16 +1,6 @@
 # Heart Disease Prediction
-##  Project Overview
-Heart disease is one of the leading causes of death worldwide, and early detection is crucial for preventative care and treatment. This project aims to build a machine learning-powered web application that predicts a user's heart disease risk based on key health parameters.
-
-The web app leverages a deep learning model (Neural Network) trained on a heart disease dataset, taking user inputs such as age, cholesterol, chest pain type, fasting blood sugar, and more to estimate the probability of heart disease.
-
-##  Objectives
-- Develop a **Flask web application** that allows users to input health parameters.
-- Use a **trained deep learning model** to predict heart disease risk.
-- Display **personalized risk percentage and a visualization**.
-- Provide **user-friendly explanations** with tooltips for each input field.
-
 ## Getting Started
+### Installing
 1. Install Python on your computer.
 ```
 https://www.python.org/downloads/
@@ -27,16 +17,32 @@ conda activate dev
 ```
 pip install -r requirements.txt
 ```
-5. Clone this repository to your local computer using `git clone`.
-6. To run the neural network model, create a new notebook on [Google Colab](https://colab.research.google.com/), then upload the Jupyter Notebook `heart_disease.ipynb` from your local repository.
-7. Run each cell sequentially to perform data cleaning, analysis, visualizations, and train the neural network model.
-8. Open the repository in Visual Studio Code.
-9. Open the terminal and run the `app.py` file using the following command:
+5. Clone this repository to your local computer.
+```
+git clone https://github.com/janakhamis/heart-disease-prediction.git
+```
+
+## Usage
+1. To run the neural network model, create a new notebook on [Google Colab](https://colab.research.google.com/), then upload the Jupyter Notebook `heart_disease.ipynb` from your local repository.
+2. Run each cell sequentially to perform data cleaning, analysis, visualizations, and train the neural network model.
+3. Navigate to the repository in Visual Studio Code.
+4. Open the terminal and run the `app.py` application.
 ```
 python app.py
 ```
-10. The terminal should generate the server link http://127.0.0.1:5000/ .
-11. Press `Ctrl` + Click the link to open the app in your default browser.
+5. The terminal should generate the server link http://127.0.0.1:5000/ .
+6. Press `Ctrl` + Click the link to open the app in your default browser.
+
+##  Project Overview
+Heart disease is one of the leading causes of death worldwide, and early detection is crucial for preventative care and treatment. This project aims to build a machine learning-powered web application that predicts a user's heart disease risk based on key health parameters.
+
+The web app leverages a deep learning model (Neural Network) trained on a heart disease dataset, taking user inputs such as age, cholesterol, chest pain type, fasting blood sugar, and more to estimate the probability of heart disease.
+
+##  Objectives
+- Develop a **Flask web application** that allows users to input health parameters.
+- Use a **trained deep learning model** to predict heart disease risk.
+- Display **personalized risk percentage and a visualization**.
+- Provide **user-friendly explanations** with tooltips for each input field.
 
 ## Cleaning the Data:
 1. Renamed columns: `target` to `risk` and `sex` to `gender`.
@@ -81,22 +87,26 @@ Answered the following questions:
 3. Decision Tree Model
    * Created a Decision Tree Classifier, fitted the model, and made predictions using testing data.
    * Calculated the confusion matrix and accuracy score.
+4. KNearestNeighbors
+   * Created a KNeighbors Classifier, fitted the model, and made predictions using testing data.
+   * Generated the confusion matrix and classification report.
 
 ## **Models Tested & Performance Comparison**
-To ensure the best predictive performance, we tested and evaluated **three different machine learning models**:
+To ensure the best predictive performance, we tested and evaluated **four different machine learning models**:
 
 | Model | Accuracy |
 |--------|----------|
 | **Neural Network (Deep Learning - Keras/TensorFlow)** | **1.00 (100%)** |
 | **Random Forest Classifier** | **0.97 (97%)** |
 | **Decision Tree Classifier** | **0.96 (96%)** |
+| **KNearestNeighbors** | **0.95 (95%)** |
 
 ### Why We Chose the Neural Network Model
-- The **Neural Network** achieved the highest accuracy (**100%**) compared to the other models.
+- The **Neural Network Model** achieved the highest accuracy (**100%**) compared to the other models.
 - It demonstrated superior learning capability and **generalization**, reducing misclassification errors.
 - The model effectively captured **complex relationships** within the dataset, improving predictive power.
 
-## **Dataset & Features**
+## Dataset & Features
 The dataset used in this project contains various health-related parameters that may contribute to **heart disease risk**. Below are the key features:
 
 | Feature | Description |
@@ -113,70 +123,47 @@ The dataset used in this project contains various health-related parameters that
 | **Oldpeak (ST Depression) (oldpeak)** | ST segment depression in ECG |
 | **Slope of Peak Exercise ST Segment (slope)** | Indicates heart stress test results |
 | **Number of Major Vessels Colored by Fluoroscopy (ca)** | Ranges from 0 to 3 |
-| **Thalassemia (thal)** | 3 = Normal, 6 = Fixed Defect, 7 = Reversible Defect |
-| **Target (risk)** | 1 = High chance of heart disease, 0 = Low chance |
+| **Thalassemia (thal)** | 1 = Normal, 2 = Fixed Defect, 3 = Reversible Defect |
+| **Target (risk)** | 1 = High risk of heart disease, 0 = Low risk |
 
 ## Building the Web App:
 **HTML**:
-1. Built the structure and the layout of the dashboard.
-2. Imported the necessary libraries, such as Leaflet.js, Plotly.js, Bootstrap, and Google Fonts.
-3. Created different sections for the state filter dropdown menu and visualizations.
+1. Built the structure and the layout of the webpage.
+2. Imported the Google Fonts library.
+3. Created the style of the buttons, the tooltip, and the form where users input the relevant features.
+
+**Results HTML**:
+1. Built the structure and the layout of the webpage.
+2. Imported the necessary library Google Fonts.
+3. Created the style of the button and provided the results from the inputs.
 
 **Javascript**:
-1. Loaded the data from the `sample_complaints.json` using D3.js.
-2. Built a function to populate the state name dropdown.
-3. Created the choropleth map and bar charts, which would change based on the state selected.
-4. Implemented interactive map clicking that filters the dashboard.
- 
-## Dashboard:
-- **State Filter Dropdown Menu**:
-  - The default option is set to "All".
-  - Users can filter the data by state.
+1. Designed the `Back` buttons to be able to navigate from Page 2 to Page 1 and Page 3 to Page 2.
+2. Formatted the `Next` buttons to enable going to the next page only if the user has inputted all the required information.
+3. When all input fields have been filled, enable the `Submit` button.
+4. Added event listeners to validate the page.
 
-- **Complaints Summary**:
-  - Total Complaints: Displays the total number of complaints for all states or the selected state.
-  - Timely Response: Shows the total number of complaints that received timely responses for all states or the selected state.
-
-- **US Map**:
-  - Visually displays the state selected
-  - Users can hover over each state to see the number of complaints and the state abbreviation.
-  - Allows users to click on a state to filter the entire dashboard.
-  - A colour gradient is shown based on the number of complaints each state receives when all states are selected.
-
-- **Bar Charts**:
-  - Complaints by Product: Shows the number of complaints by product for all states or the selected state.
-  - Complaints by Issue: Displays the top 10 complaints by issue for all states or the selected state.
-
-## Ethical Considerations:
-We ensured the dataset was publicly available and provided by the United States government. Any sensitive information in the dataset is anonymized, and the study does not reinforce regional or demographic biases. Visualizations and insights are given honestly to ensure fairness and openness. Data is presented without bias or manipulation to alter outcomes.
+**Flask App**:
+1. Imported the necessary dependencies, such as Flask, TensorFlow, Numpy, and Pickle.
+2. Loaded the trained model and scaler.
+3. Added the following routes:
+   * `/`: Homepage
+   * `/predict`: Form submission and prediction results
 
 ## Datasets:
-- complaints.csv
-- state_names.csv
-- logo.png
+- heart_disease_dataset.csv
 
 ## Outputs:
-- sample_complaints.csv
-- sample_complaints.json
-- index.html
-- Number of Complaints Per Month.png
-
-## How to Run it 
-1. Open the cloned file in the Visual Studio Code:
-   1. Go to file > Open Folder and navigate to the folder where you cloned the repository.
-   2. Select the folder to open in VS code.
-2. Run the Jupyter Notebook:
-     1. Open the notebook file (complaints_notebook.ipynb) in VS code or Jupyter.
-     2. Run the cells to perform the Analysis.
-3. Run the HTML file:
-    1. Right-click on the HTML file (index.html) and click "Open with Live Server".
-    2. Alternatively, open the HTML file (index.html) and press Alt + L followed by Alt + O.
+- cleaned_heart_disease.csv
+- graphs/
+- heart_disease_model.h5
+- scaler.pkl
 
 ## Group Members:
 - Jana Khamis
 - Paul Schaefer
 - King Yuet Lau (Janette)
+- Bhavesh Heetoo
 
 ## References:
-- “Consumer Complaint Database.” Consumer Financial Protection Bureau, www.consumerfinance.gov/data-research/consumer-complaints/. Accessed 7 Jan. 2025.
-- Pettini, Francesco. “US State Names Codes and Abbreviations.” Kaggle, 15 Feb. 2022, www.kaggle.com/datasets/francescopettini/us-state-names-codes-and-abbreviations.
+Nazirkhan, Farhaan. “Heart Disease Prediction Dataset.” Kaggle, 27 Sept. 2024, www.kaggle.com/datasets/mfarhaannazirkhan/heart-dataset.
